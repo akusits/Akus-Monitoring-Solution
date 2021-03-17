@@ -9,8 +9,125 @@
 		}
 	</style>
 </head>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"></script>
+<link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+<style>
+        @import url(https://fonts.googleapis.com/css?family=Audiowide);
+
+        .topnav {
+                background-color: #333;
+                padding: 10px;
+                overflow: hidden;
+        }
+
+        /* Style the links inside the navigation bar */
+        .topnav a {
+                float: left;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+        }
+
+        /* Change the color of links on hover */
+        .topnav a:hover {
+                background-color: #ddd;
+                color: black;
+        }
+
+        /* Add a color to the active/current link */
+        .topnav a.active {
+                background-color: #4CAF50;
+                color: white;
+        }
+
+        h1 {
+                font-size: 1.75rem;
+                margin: 0 0 0.75rem 0;
+        }
+
+
+        /* Pattern styles */
+        .container {
+                display: flex;
+        }
+
+        .left-half {
+                flex: 1;
+                padding: 1rem;
+        }
+
+        .right-half {
+
+                flex: 1;
+                padding: 1rem;
+        }
+
+        .vertical {
+                border-left: 6px;
+                height: 70%;
+                position: absolute;
+                left: 50%;
+        }
+</style>
+
 <body>
-    <iframe src="/examples/html/hello.html" name="myFrame"></iframe>
-    <p><a href="https://www.tutorialrepublic.com" target="myFrame">Open TutorialRepublic.com</a></p>
+
+        <div class="topnav" style="padding:10px;">
+                <a class="active" href="{% url 'akus_dashboard'%}">Home</a>
+               <a href="{% url 'home_network'%}">Home Network</a>
+                <a href="{% url 'graph_view'%}">Zabbix Data Review</a>
+                <a href="{% url 'grafana_data'%}"> Grafana data check </a>
+                <a href="{% url 'plotly_graph'%}"> Plotly Graph </a>
+                <a href ="{%url 'cctv'%}"> CCTV</a>
+                <a href ="{% url 'akus_dashboard'%}"> Return To Main dashboard</a>
+        
+
+        </div>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <div class="chartjs-size-monitor"
+                        style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                        <div class="chartjs-size-monitor-expand"
+                                style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                        </div>
+                        <div class="chartjs-size-monitor-shrink"
+                                style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                        </div>
+                </div>
+<body>
+
+	<div class="container" style="padding-top:5%;width:100%;height:100%;">
+		<form action="{% url 'cctv' %}" method="POST" align="center">
+			{% csrf_token %} 
+			<input type="text" name="name">
+			<input type="submit" name="submit" value="Submit">
+		</form>
+
+		{% for result in results %}
+
+			<p>{{result.name}}</p>
+			<p>{{result.prrice}}</p>
+
+		{% endfor %}
+
+	</div>
+
+	<div class="container" style="padding:10%; ">
+
+
+		{% for result in results %}
+
+    	<iframe name="myFrame"></iframe>
+    	<p><a href='{{result.name}}' target="myFrame">{{result.name}}</a></p>
+
+		{% endfor %}
+
+
+	</div>
 </body>
 </html>

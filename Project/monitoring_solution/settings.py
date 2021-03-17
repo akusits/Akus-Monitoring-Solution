@@ -25,7 +25,7 @@ SECRET_KEY = 'a1gki@(6wm5a$)%=xsm)t_@a!v))eu1lwqkgzk0th$b22ft_u@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['172.16.0.35', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -118,4 +118,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_ROOT = "/home/akus/Documents/Monitoring Solution Project/Project/Dashboard/static"
+STATIC_URL = "/home/akus/Documents/Monitoring Solution Project/Project/Dashboard/static/"

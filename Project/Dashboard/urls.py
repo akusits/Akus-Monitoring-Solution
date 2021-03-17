@@ -11,6 +11,7 @@ urlpatterns = [
     path('plotly_graph', views.plotly_graph, name='plotly_graph'),
     path('graph_type', views.graph_type, name='graph_type'),
     path('icmp', views.icmp, name='icmp'),
+    path('home_network',views.home_network,name='home_network'),
     path('cctv', views.cctv, name='cctv'),
    
 ]

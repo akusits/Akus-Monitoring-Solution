@@ -1,5 +1,139 @@
 <html>
+
+
+<style>
+        @import url(https://fonts.googleapis.com/css?family=Audiowide);
+
+        .topnav {
+                background-color: #333;
+                padding: 10px;
+                overflow: hidden;
+        }
+
+        /* Style the links inside the navigation bar */
+        .topnav a {
+                float: left;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+        }
+
+        /* Change the color of links on hover */
+        .topnav a:hover {
+                background-color: #ddd;
+                color: black;
+        }
+
+        /* Add a color to the active/current link */
+        .topnav a.active {
+                background-color: #4CAF50;
+                color: white;
+        }
+
+        h1 {
+                font-size: 1.75rem;
+                margin: 0 0 0.75rem 0;
+        }
+
+
+        /* Pattern styles */
+        .container {
+                display: flex;
+        }
+
+        .left-half {
+                flex: 1;
+                padding: 1rem;
+        }
+
+        .right-half {
+
+                flex: 1;
+                padding: 1rem;
+        }
+
+        .vertical {
+                border-left: 6px;
+                height: 70%;
+                position: absolute;
+                left: 50%;
+        }
+</style>
 <body>
-<iframe src="http://172.16.0.34:3000/d-solo/jctWNosGk/zabbix-server-dashboard?orgId=1&from=1614727789872&to=1614749389872&var-datasource=Zabbix&panelId=1" width="450" height="200" frameborder="0"></iframe>A
+
+
+    <div class="topnav" style="padding:10px;">
+                    <a class="active" href="{% url 'akus_dashboard'%}">Home</a>
+                    <a href="{% url 'home_network'%}">Home Network</a>
+                    <a href="{% url 'graph_view'%}">Zabbix Data Review</a>
+                    <a href="{% url 'grafana_data'%}"> Grafana data check </a>
+                    <a href="{% url 'plotly_graph'%}"> Plotly Graph </a>
+                    <a href ="{%url 'cctv'%}"> CCTV</a>
+                    <a href ="{% url 'akus_dashboard'%}"> Return To Main dashboard</a>
+            
+
+            </div>
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                    <div class="chartjs-size-monitor"
+                            style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                            <div class="chartjs-size-monitor-expand"
+                                    style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                    <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                            </div>
+                            <div class="chartjs-size-monitor-shrink"
+                                    style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                    <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                            </div>
+                    </div>
+                    
+            </main>
+
+    </div
+
+    <div class="row"style="padding-top:55%;padding-left:5%;">
+
+        <div class="row"style="padding-top:2%;padding-left:5%;">
+
+        <iframe src="http://172.16.0.34:3000/d-solo/16XF-b8Mk/zabbix-server-dashboard-5?orgId=1&refresh=5s&from=1615684876172&to=1615706476172&var-datasource=Zabbix&panelId=3" width="250" height="200" frameborder="0"></iframe>
+
+        <iframe src="http://172.16.0.34:3000/d-solo/16XF-b8Mk/zabbix-server-dashboard-5?orgId=1&refresh=5s&from=1615684893993&to=1615706493993&var-datasource=Zabbix&panelId=6" width="350" height="200" frameborder="0"></iframe>
+
+
+        <iframe src="http://172.16.0.34:3000/d-solo/16XF-b8Mk/zabbix-server-dashboard-5?orgId=1&refresh=5s&from=1615685319481&to=1615706919482&var-datasource=Zabbix&panelId=1" width="450" height="200" frameborder="0"></iframe>
+
+        <iframe src="http://172.16.0.34:3000/d-solo/16XF-b8Mk/zabbix-server-dashboard-5?orgId=1&refresh=5s&from=1615686849664&to=1615708449664&var-datasource=Zabbix&panelId=15" width="450" height="200" frameborder="0"></iframe>       
+
+        </div>    
+        
+    </div>
+
+
+    <div class="row"style="padding-top:2%;padding-left:5%;">
+       
+     <iframe src="http://172.16.0.34:3000/d-solo/16XF-b8Mk/zabbix-server-dashboard-5?orgId=1&refresh=5s&from=1615686932093&to=1615708532094&var-datasource=Zabbix&panelId=4" width="450" height="200" frameborder="0"></iframe>
+     <iframe src="http://172.16.0.34:3000/d-solo/16XF-b8Mk/zabbix-server-dashboard-5?orgId=1&refresh=5s&from=1615687016876&to=1615708616876&var-datasource=Zabbix&panelId=13" width="450" height="200" frameborder="0"></iframe>
+
+      <iframe src="http://172.16.0.34:3000/d-solo/16XF-b8Mk/zabbix-server-dashboard-5?orgId=1&refresh=5s&from=1615686749653&to=1615708349653&var-datasource=Zabbix&panelId=11" width="450" height="200" frameborder="0"></iframe>
+
+
+
+    </div>
+
+    <div class="row"style="padding-top:2%;padding-left:5%;">
+       
+      <iframe src="http://172.16.0.34:3000/d-solo/16XF-b8Mk/zabbix-server-dashboard-5?orgId=1&refresh=5s&from=1615684915871&to=1615706515872&var-datasource=Zabbix&panelId=7" width="450" height="200" frameborder="0"></iframe>
+      <iframe src="http://172.16.0.34:3000/d-solo/16XF-b8Mk/zabbix-server-dashboard-5?orgId=1&refresh=5s&from=1615687157852&to=1615708757852&var-datasource=Zabbix&panelId=5" width="450" height="200" frameborder="0"></iframe>
+
+      <iframe src="http://172.16.0.34:3000/d-solo/16XF-b8Mk/zabbix-server-dashboard-5?orgId=1&refresh=5s&from=1615687182350&to=1615708782351&var-datasource=Zabbix&panelId=9" width="450" height="200" frameborder="0"></iframe>
+
+     
+
+
+    </div>
+
+    
 </body>
 </html>

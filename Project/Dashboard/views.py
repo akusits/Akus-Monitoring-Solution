@@ -2,6 +2,7 @@ from plotly.offline import download_plotlyjs, plot
 from datetime import datetime
 from pybix import GraphImageAPI
 import time
+from .models import *
 from django.shortcuts import render
 from django.shortcuts import render
 from plotly.offline import plot
@@ -20,7 +21,7 @@ def akus_dashboard(request):
                              mode='lines', name='test',
                              opacity=0.8, marker_color='green')],
                     output_type='div')
-    return render(request, "home.html", context={'plot_div': plot_div})
+    return render(request, "akus1.html", context={'plot_div': plot_div})
 
 def graph_view(request):
 
@@ -35,6 +36,14 @@ def graph_view(request):
     result1 = zapi.host.get(monitored_hosts=1, output='extend')
 
     print("Connected to Zabbix API Version %s" % zapi.api_version())
+
+
+
+
+    graph = GraphImageAPI(url="http://172.16.0.32/zabbix",
+                      user="Admin",
+                      password="zabbix")
+    
 
     # s = zapi.info.version()
     # print (s)
@@ -81,7 +90,14 @@ def graph_view(request):
 
 
 @xframe_options_exempt
-def cctv(request):
+def cctv(request):    
+    
+    if request.method == "POST":
+        query_name = request.POST.get('name', None)
+        if query_name:
+            results = Product.objects.filter(name__contains=query_name)
+            return render(request, 'cctv.html', {"results":results})
+
     
 
     return render(request, 'cctv.html')
@@ -123,6 +139,43 @@ def grafana_data(request):
     
 
     return render(request, 'grafana_check.html')
+
+@xframe_options_exempt
+def home_network(request):
+    from grafana_api.grafana_face import GrafanaFace
+    from grafanacli import GrafanaAdmin
+   
+    ga = GrafanaAdmin('http://172.16.0.34:3000')
+
+
+    # Disable SSL verification
+    ga.verify = False
+    """SSL verification must be disabled before use GrafanaAuth"""
+
+    # Authentication using username and password
+    ga.GrafanaAuth(Username='admin', Password='admin')
+
+    # List your current organization
+    x = ga.CurrentOrganization()
+    print(x)
+
+    # List all organizations
+    u = ga.OrganizationList()
+    print(u)
+    
+
+    # Search dashboard by title
+    dash = ga.DashboardSearch(DashboardName='test')
+    #print(dash)
+    
+
+
+    print("------" , '\n', request.headers)
+
+    print("------", '\n', request)
+    
+
+    return render(request, 'home_network.html')
 
 from django.shortcuts import render
 from plotly.offline import plot
@@ -362,3 +415,4 @@ def icmp(request):
             print (f"Status is BAD, and {ip} is DOWN") 
 
     return render(request, 'icmp.html')
+

@@ -8,24 +8,25 @@
 </head>
 
 <body>
-  <div class="container" style="width: 40%; height: 40%;">
-    {% if graph %}
-    {{ graph|safe }}
-    {% else %}
-    <p>No graph was provided.</p>
-    {% endif %}
+  <div class="row"style="padding-top:2%;padding-left:5%;">
+    
+      {% if graph %}
+      {{ graph|safe }}
+      {% else %}
+      <p>No graph was provided.</p>
+      {% endif %}
 
-  </div>
+    
 
 
-  <div class="container" style="width: 40%; height: 40%;">
-    {% if graph %}
-    {{ graph2|safe }}
-    {% else %}
-    <p>No graph was provided.</p>
-    {% endif %}
-  
-  </div>
+    
+      {% if graph %}
+      {{ graph2|safe }}
+      {% else %}
+      <p>No graph was provided.</p>
+      {% endif %}
+    
+    
 
     
 

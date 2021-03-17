@@ -65,13 +65,12 @@
 
         <div class="topnav" style="padding:10px;">
                 <a class="active" href="#home">Home</a>
-                <a href="#news">Notifications</a>
-                <a href="#contact">Contact</a>
-                <a href="#about">About</a>
+                <a href="{% url 'home_network'%}">Home Network</a>
                 <a href="{% url 'graph_view'%}">Zabbix Data Review</a>
                 <a href="{% url 'grafana_data'%}"> Grafana data check </a>
                 <a href="{% url 'plotly_graph'%}"> Plotly Graph </a>
                 <a href ="{%url 'cctv'%}"> CCTV</a>
+                <a href ="#"> Return To Main dashboard</a>
         
 
         </div>
@@ -94,11 +93,24 @@
                 </div>
         </main>
 
-       <div id='myplot' style="padding-right:10%;padding-top:5%;width:60%;height:60%;">
-                {% autoescape off %}
-                {{ plot_div }}
-                {% endautoescape %}
-       </div>
+        <div class="row"style="padding-top:2%;padding-left:5%;">
+
+
+                <img src="http://172.16.0.32/zabbix/chart2.php?graphid=1503&from=now%2Fd&to=now&height=201&width=1300&profileIdx=web.charts.filter&_=upun6bxl" alt="Girl in a jacket"> 
+
+                <h1>Plotly Graph sample</h1>
+
+                <div id='myplot' style="padding-top:2%;padding-left:45%; width:60%;height:60%;">
+                        {% autoescape off %}
+                        {{ plot_div }}
+                        {% endautoescape %}
+                </div>
+
+
+                
+        </div>
+
+        
 
 
 </body>
