@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <h1> Company Registration Form</h1>
+    <title>Akus IT Monitoring Solutions </title>
+  </head>  
+<body>
+<div class="container">
+        <div class="row">
+
+            <div class="col-6 top-div" style="background-color: white;">
+             <h2 class="form-title" style="color: navy; font-family: Georgia, 'Times New Roman', Times, serif;"><b>Sign Up</b></h2>
+             <form  class="register-form" method="POST" action="/sign-up" onsubmit="return validation()">
+              {% csrf_token %}
+              {% if messages %}
+              {% for msg in messages %}
+              <p class="text-danger" style="padding-left: 20%;">{{msg}}</p>
+              {% endfor %}
+              {% endif %}
+
+                <div class="col-sm-10 form-group">
+                    <span><i class="fa fa-user" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Your Name" autocomplete="off"/>
+
+                  </div>
+                  <span id="username" class="text-danger"></span>
+
+                 <div class="col-sm-10 form-group">
+                    <span><i class="fa fa-envelope" aria-hidden="true" ></i></span>
+                    <input type="text" class="form-control" name="email" id="email" placeholder="Your Email"autocomplete="off"/>
+
+               </div>
+               <span id="useremail" class="text-danger"></span>
+
+                <div class="col-sm-10 form-group">
+                    <span><i class="fa fa-phone" aria-hidden="true" ></i></span>
+                    <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Contact Number" autocomplete="off"/>
+
+                </div>
+                <span id="userphone" class="text-danger"></span>
+
+                <div class="col-sm-10 form-group">
+                    <span><i class="fa fa-male" aria-hidden="true"></i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <div class="col-sm-10 form-group">
+                    <span><i class="fa fa-lock" aria-hidden="true"  style="color: orangered;"></i></span>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Your Password" autocomplete="off"/>
+
+                    </div>
+                    <span id="userpassword" class="text-danger"></span>
+
+                <div class="col-sm-10 form-group">
+                    <span><i class="fa fa-lock" aria-hidden="true"  style="color: orangered;"></i></span>
+                    <input type="password" class="form-control"  name="cpassword" id="cpassword" placeholder="Your Confirm Password" autocomplete="off"/>
+
+                </div>
+                <span id="userpass" class="text-danger"></span>
+
+                <div class="form-group col-sm-10">
+                    <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                    <label for="agree-term" class="label-agree-term" style="color: navy; font-family: 'Times New Roman', Times, serif;"><span><span></span></span>I agree all statements in  <a href="#" class="term-service" style="color: navy;"><u>Terms of service</u></a></label>
+                </div>
+                <span id="agreeterm" class="text-danger"></span>
+                <div class=" col-sm-10 form-button">
+                    <input type="submit" class="btn "name="signup" id="signup" class="form-submit" value="Sign Up" style="background-color: navy; color: white; font-family: 'Times New Roman', Times, serif;"/>
+                </div>
+                <div class="col-sm-10 text-center" style="padding-bottom: 5%;">
+                    <a href="/" style="color: navy; font-family: 'Times New Roman', Times, serif;"><u>I am already member</u></a>
+                </div>
+
+             </form>
+            </div>
+            <div class="col-6 side-div">
+
+
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+    function validation(){
+
+        var name =  document.getElementById('name').value;
+        var email =  document.getElementById('email').value;
+        var phone =  document.getElementById('phone').value;
+        var password =  document.getElementById('password').value;
+        var cpassword =  document.getElementById('cpassword').value;
+        var agreeterm =  document.getElementById('agree-term').checked;
+
+
+
+        if(name == ""){
+            document.getElementById('username').innerHTML="**please fill name field";
+            return false;
+        }
+        if((name.length<=3)||(name.length>=50)){
+            document.getElementById('username').innerHTML="**please enter valid length";
+            return false;
+
+        }
+        if(!isNaN(name)){
+            document.getElementById('username').innerHTML="**only characetr are allowed";
+            return false;
+
+        }
+        if(email == ""){
+            document.getElementById('useremail').innerHTML="**please Fill email field";
+            return false;
+        }
+        if(email.indexOf('@')<= 0){
+            document.getElementById('useremail').innerHTML="**Please enter valid email address";
+            return false;
+        }
+        if((email.charAt(email.length-4)!='.') &&(email.charAt(email.length-3)!='.')){
+            document.getElementById('useremail').innerHTML="**Please enter valid positionn i.e .com,.in,.org etc";
+            return false;
+        }
+        if(phone == ""){
+            document.getElementById('userphone').innerHTML="**please fill contact number field";
+            return false;
+        }
+        if(isNaN(phone)){
+            document.getElementById('userphone').innerHTML="**please enter digit";
+            return false;
+        }
+        if(phone.length!=10){
+            document.getElementById('userphone').innerHTML="**please enter 10 digit number";
+            return false;
+        }
+        if(password == ""){
+            document.getElementById('userpassword').innerHTML="**please fill password field";
+            return false;
+        }
+        if((password.length<=5)){
+            document.getElementById('userpassword').innerHTML="**please enter 8 digit password";
+            return false;
+
+        }
+        if (password != cpassword){
+            document.getElementById('userpass').innerHTML="**password not match";
+            return false;
+        }
+
+
+        if(agreeterm == ""){
+            document.getElementById('agreeterm').innerHTML="**please agree terms and conditions";
+            return false;
+        }
+    }
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+</body>
+</html>

@@ -4,13 +4,59 @@ from pybix import GraphImageAPI
 import time
 from .models import *
 from django.shortcuts import render
-from django.shortcuts import render
 from plotly.offline import plot
 from plotly.graph_objs import Scatter
 from zabbix.api import ZabbixAPI
 # Create your views here.
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
 import json
+from django.contrib.sessions.models import Session
+from django.contrib import messages
 from django.views.decorators.clickjacking import xframe_options_exempt
+
+# Create your views here.
+def userlogin(request):
+    if request.session.has_key('uid'):
+        return redirect('/akus_dashboard')
+
+    if request.POST:
+        email = request.POST['email']
+        password = request.POST['password']
+        user = User()
+        count = User.objects.filter(email=email, password=password).count()
+        if count > 0:
+            request.session['uid'] = request.POST['email']
+            return redirect('/akus_dashboard')
+        else:
+            messages.error(request, 'Invalid Email And Password')
+            return redirect('/')
+
+    return render(request, 'login.html')
+
+
+def usersignup(request):
+    if request.POST:
+        name = request.POST['name']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        password = request.POST['password']
+        cpassword = request.POST['cpassword']
+
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "Email Already Exists ..")
+            return redirect('/sign-up')
+        else:
+            user = User(name=name, cpassword=cpassword, email=email, phone=phone,password=password)
+            user.save()
+            messages.success(request, "Your Acoount Registered with Us")
+            return redirect('/')
+    return render(request, 'signup.html')
+
+
+def deletesession(request):
+    del request.session['uid']
+    return redirect('/')
 
 
 def akus_dashboard(request):

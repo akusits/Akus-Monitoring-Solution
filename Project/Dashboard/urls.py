@@ -5,7 +5,10 @@ from django.contrib.auth import views as auth_views
 from django.views.generic.base import TemplateView
 
 urlpatterns = [
-    path('', views.akus_dashboard, name='akus_dashboard'),
+    path('', views.userlogin),
+    path('sign-up', views.usersignup, name='sign-up'),
+    path('akus_dashboard', views.akus_dashboard, name='akus_dashboard'),
+    path('logout', views.deletesession, name='logout'),
     path('graph_view', views.graph_view, name='graph_view'),
     path('grafana_data', views.grafana_data, name='grafana_data'),
     path('plotly_graph', views.plotly_graph, name='plotly_graph'),
